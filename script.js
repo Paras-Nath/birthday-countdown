@@ -3,10 +3,10 @@ console.log('tests');
 
 const countdownNode = document.getElementById("countdown");
 console.log('countdownNode - ', countdownNode);
-updateTime();
 
-const fromNow = Math.floor((new Date().getTime() / (1000)));
 interval = null;
+const fromNow = Math.floor((new Date().getTime() / (1000)));
+updateTime();
 function updateTime() {
     interval = setInterval(() => {
         /* FINAL_LOGIC */// const countdown = (20057 + 28) - Math.floor((new Date().getTime() / (1000 * 60 * 60 * 24)));
@@ -16,6 +16,8 @@ function updateTime() {
             clearInterval(interval);
             countdown = "hola amigo";
             createBalloons(30);
+
+            setTimeout(() => { removeBalloons(); }, 10000);
         }
         countdownNode.innerHTML = countdown;
     }, 1000);
@@ -53,11 +55,13 @@ function createBalloons(num) {
     }
 }
 
-function removeBalloons() {
+function removeBalloons(timeout) {
     balloonContainer.style.opacity = 0;
     setTimeout(() => {
         balloonContainer.remove()
-    }, 500)
+    }, 500);
+
+    clearTimeout(timeout);
 }
 
 // window.addEventListener("load", () => {
