@@ -2,6 +2,10 @@ console.log('tests');
 
 
 const countdownNode = document.getElementById("countdown");
+const dayNode = document.getElementById("days");
+const hourNode = document.getElementById("hours");
+const minuteNode = document.getElementById("minutes");
+const secondNode = document.getElementById("seconds");
 console.log('countdownNode - ', countdownNode);
 
 interval = null;
@@ -9,8 +13,22 @@ const fromNow = Math.floor((new Date().getTime() / (1000)));
 updateTime();
 function updateTime() {
     interval = setInterval(() => {
-        /* FINAL_LOGIC */// const countdown = (20057 + 28) - Math.floor((new Date().getTime() / (1000 * 60 * 60 * 24)));
-        let countdown = (fromNow + 10) - Math.floor((new Date().getTime() / (1000)));
+        /* FINAL_LOGIC */
+        // const countdown = (20083 + 2) - Math.floor((new Date().getTime() / (1000 * 60 * 60 * 24)));
+        let countdown = (((20083 * 24 * 60 * 60) + (2 * 24 * 60 * 60)) - Math.floor((new Date().getTime() / (1000))));
+        let seconds = (((20083 * 24 * 60 * 60) + (2 * 24 * 60 * 60)) - Math.floor(((new Date().getTime() + (330 * 60 * 1000)) / (1000))));
+        // let countdown = (fromNow + 10) - Math.floor((new Date().getTime() / (1000)));
+
+        let days = Math.floor(seconds / (60 * 60 * 24));
+        seconds = Math.floor(seconds % (60 * 60 * 24));
+
+        let hours = Math.floor((seconds / (60 * 60)));
+        seconds = Math.floor(seconds % (60 * 60));
+
+        let minutes = Math.floor(seconds / (60));
+        seconds = Math.floor(seconds % (60));
+
+
 
         if (countdown <= 0) {
             clearInterval(interval);
@@ -20,6 +38,10 @@ function updateTime() {
             setTimeout(() => { removeBalloons(); }, 10000);
         }
         countdownNode.innerHTML = countdown;
+        dayNode.innerHTML = days + (days > 1 ? ' Days' : ' Day');
+        hourNode.innerHTML = hours + (hours > 1 ? ' Hours' : ' Hour');
+        minuteNode.innerHTML = minutes + (minutes > 1 ? ' Minutes' : ' Minute');
+        secondNode.innerHTML = seconds + (seconds > 1 ? ' Seconds' : ' Second');
     }, 1000);
 }
 

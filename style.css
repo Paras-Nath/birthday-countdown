@@ -1,3 +1,7 @@
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
 :root {
     --layoutSpace: 25px;
 }
@@ -8,7 +12,8 @@
     width: 100%;
     min-height: calc(100vh);
     height: auto;
-    background: linear-gradient(to top, #09203f 0%, #537895 30%, #7588a0 50%, #c1c8d1 100%);}
+    background: linear-gradient(to top, #09203f 0%, #537895 30%, #7588a0 50%, #c1c8d1 100%);
+}
 
 .mainOuter {
     min-height: 100vh;
@@ -95,5 +100,5 @@
 @media (max-width: 440px) {
     .countDown {
         font-size: 3rem;
-    }   
+    }
 }
