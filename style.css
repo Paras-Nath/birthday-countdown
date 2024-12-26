@@ -28,7 +28,7 @@
 }
 
 .countDown {
-    font-size: 250px;
+    font-size: 12em;
     font-family: 'Antic Didone';
 }
 
@@ -90,4 +90,10 @@
         transform: translateY(-300vh);
         opacity: 0;
     }
+}
+
+@media (max-width: 440px) {
+    .countDown {
+        font-size: 3rem;
+    }   
 }
