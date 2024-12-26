@@ -1,25 +1,23 @@
-console.log('tests');
-
-
 const countdownNode = document.getElementById("countdown");
 const dayNode = document.getElementById("days");
 const hourNode = document.getElementById("hours");
 const minuteNode = document.getElementById("minutes");
 const secondNode = document.getElementById("seconds");
-// console.log('countdownNode - ', countdownNode);
+
+const cakeNode = document.getElementById("cake");
+
+console.log('cakeNode - ',cakeNode);
+
+
 
 interval = null;
 const fromNow = Math.floor((new Date().getTime() / (1000)));
 updateTime();
 function updateTime() {
+    cakeNode.style.opacity = 0;
     interval = setInterval(() => {
-        
-        
-        /* FINAL_LOGIC */
-        // const countdown = (20083 + 2) - Math.floor((new Date().getTime() / (1000 * 60 * 60 * 24)));
         let countdown = (((20083 * 24 * 60 * 60) + (2 * 24 * 60 * 60)) - Math.floor((new Date().getTime() / (1000))));
         let seconds = (((20083 * 24 * 60 * 60) + (2 * 24 * 60 * 60)) - Math.floor(((new Date().getTime() + (330 * 60 * 1000)) / (1000))));
-        // let countdown = (fromNow + 10) - Math.floor((new Date().getTime() / (1000)));
         
         let days = Math.floor(seconds / (60 * 60 * 24));
         seconds = Math.floor(seconds % (60 * 60 * 24));
@@ -31,7 +29,6 @@ function updateTime() {
         seconds = Math.floor(seconds % (60));
         
         let numberOnly = false;
-        // let numberOnly = true;
         if (days == 0) {
             dayNode.style.display = 'none';
             if (hours == 0) {
@@ -43,15 +40,12 @@ function updateTime() {
             }
         }
         
-        // if(seconds < 30) {
-
-            // }
-
-        if (countdown <= 0) {
-        // if (seconds <= 0) {
+        // if (countdown <= 0) {
+        if (seconds <= 0) {
+            cakeNode.style.opacity = 1;
             clearInterval(interval);
 
-            const message = "holaa amigo aaa";
+            const message = "Happy Birthday Riya";
             countdownNode.innerHTML = message;
 
             createBalloons(30);
