@@ -1,5 +1,5 @@
 body {
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: Rubik, sans-serif;
 }
 
 :root {
@@ -37,8 +37,37 @@ body {
     font-family: 'Antic Didone';
 }
 
-.zero {}
+.normal {
+    font-size: 12em;
+    opacity: 1 !important;
+    transition: all linear 1s;
+}
 
+.final {
+    font-size: 200%;
+    opacity: 0;
+    transition: all linear 1s;
+}
+
+#days {
+    font: 300;
+    font-size: 10em;
+}
+
+#hours {
+    font: 400;
+    font-size: 2em;
+}
+
+#minutes {
+    font: 500;
+    font-size: 3em;
+}
+
+#seconds {
+    font: 600;
+    font-size: 4em;
+}
 
 #balloon-container {
     height: 100vh;

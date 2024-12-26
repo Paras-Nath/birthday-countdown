@@ -6,45 +6,67 @@ const dayNode = document.getElementById("days");
 const hourNode = document.getElementById("hours");
 const minuteNode = document.getElementById("minutes");
 const secondNode = document.getElementById("seconds");
-console.log('countdownNode - ', countdownNode);
+// console.log('countdownNode - ', countdownNode);
 
 interval = null;
 const fromNow = Math.floor((new Date().getTime() / (1000)));
 updateTime();
 function updateTime() {
     interval = setInterval(() => {
+        
+        
         /* FINAL_LOGIC */
         // const countdown = (20083 + 2) - Math.floor((new Date().getTime() / (1000 * 60 * 60 * 24)));
         let countdown = (((20083 * 24 * 60 * 60) + (2 * 24 * 60 * 60)) - Math.floor((new Date().getTime() / (1000))));
         let seconds = (((20083 * 24 * 60 * 60) + (2 * 24 * 60 * 60)) - Math.floor(((new Date().getTime() + (330 * 60 * 1000)) / (1000))));
         // let countdown = (fromNow + 10) - Math.floor((new Date().getTime() / (1000)));
-
+        
         let days = Math.floor(seconds / (60 * 60 * 24));
         seconds = Math.floor(seconds % (60 * 60 * 24));
-
+        
         let hours = Math.floor((seconds / (60 * 60)));
         seconds = Math.floor(seconds % (60 * 60));
-
+        
         let minutes = Math.floor(seconds / (60));
         seconds = Math.floor(seconds % (60));
+        
+        let numberOnly = false;
+        // let numberOnly = true;
+        if (days == 0) {
+            dayNode.style.display = 'none';
+            if (hours == 0) {
+                hourNode.style.display = 'none';
+                if(minutes == 0) {
+                    minuteNode.style.display = 'none';
+                    numberOnly = true;
+                }
+            }
+        }
+        
+        // if(seconds < 30) {
 
-
+            // }
 
         if (countdown <= 0) {
+        // if (seconds <= 0) {
             clearInterval(interval);
-            countdown = "hola amigo";
-            createBalloons(30);
 
-            setTimeout(() => { removeBalloons(); }, 10000);
+            const message = "holaa amigo aaa";
+            countdownNode.innerHTML = message;
+
+            createBalloons(30);
+            setTimeout(() => { removeBalloons(); }, 15000);
         }
-        countdownNode.innerHTML = countdown;
         dayNode.innerHTML = days + (days > 1 ? ' Days' : ' Day');
         hourNode.innerHTML = hours + (hours > 1 ? ' Hours' : ' Hour');
         minuteNode.innerHTML = minutes + (minutes > 1 ? ' Minutes' : ' Minute');
-        secondNode.innerHTML = seconds + (seconds > 1 ? ' Seconds' : ' Second');
+        if(numberOnly) {
+            secondNode.innerHTML = seconds;
+        } else {
+            secondNode.innerHTML = seconds + (seconds > 1 ? ' Seconds' : ' Second');
+        }
     }, 1000);
 }
-
 
 const balloonContainer = document.getElementById("balloon-container");
 
