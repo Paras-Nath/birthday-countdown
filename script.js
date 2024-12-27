@@ -3,58 +3,66 @@ const dayNode = document.getElementById("days");
 const hourNode = document.getElementById("hours");
 const minuteNode = document.getElementById("minutes");
 const secondNode = document.getElementById("seconds");
+const audioNode = document.getElementById("birthday_audio");
 
 const cakeNode = document.getElementById("cake");
 
-console.log('cakeNode - ',cakeNode);
-
-
-
 interval = null;
 const fromNow = Math.floor((new Date().getTime() / (1000)));
+let numberOnly = false;
+
 updateTime();
 function updateTime() {
     cakeNode.style.opacity = 0;
     interval = setInterval(() => {
         let countdown = (((20083 * 24 * 60 * 60) + (2 * 24 * 60 * 60)) - Math.floor((new Date().getTime() / (1000))));
         let seconds = (((20083 * 24 * 60 * 60) + (2 * 24 * 60 * 60)) - Math.floor(((new Date().getTime() + (330 * 60 * 1000)) / (1000))));
-        
+
         let days = Math.floor(seconds / (60 * 60 * 24));
         seconds = Math.floor(seconds % (60 * 60 * 24));
-        
+
         let hours = Math.floor((seconds / (60 * 60)));
         seconds = Math.floor(seconds % (60 * 60));
-        
+
         let minutes = Math.floor(seconds / (60));
         seconds = Math.floor(seconds % (60));
-        
-        let numberOnly = false;
+
+
         if (days == 0) {
             dayNode.style.display = 'none';
             if (hours == 0) {
                 hourNode.style.display = 'none';
-                if(minutes == 0) {
+                if (minutes == 0) {
                     minuteNode.style.display = 'none';
-                    numberOnly = true;
+                    if (seconds == 0) {
+                        secondNode.style.display = 'none';
+                        audioNode.play();
+
+                        cakeNode.style.opacity = 1;
+                        clearInterval(interval);
+
+                        const message = "Happy Birthday Riya";
+                        countdownNode.innerHTML = message;
+
+                        createBalloons(30);
+                        setTimeout(() => { removeBalloons(); }, 1800000);
+                    } else {
+                    }
+
+                    if (!numberOnly) {
+                        if (seconds < 12) {
+                            numberOnly = true;
+                            secondNode.classList.add('zoom_in');
+                        }
+                    }
                 }
             }
         }
-        
-        // if (countdown <= 0) {
-        if (seconds <= 0) {
-            cakeNode.style.opacity = 1;
-            clearInterval(interval);
 
-            const message = "Happy Birthday Riya";
-            countdownNode.innerHTML = message;
-
-            createBalloons(30);
-            setTimeout(() => { removeBalloons(); }, 15000);
-        }
         dayNode.innerHTML = days + (days > 1 ? ' Days' : ' Day');
         hourNode.innerHTML = hours + (hours > 1 ? ' Hours' : ' Hour');
         minuteNode.innerHTML = minutes + (minutes > 1 ? ' Minutes' : ' Minute');
-        if(numberOnly) {
+        if (numberOnly) {
             secondNode.innerHTML = seconds;
         } else {
             secondNode.innerHTML = seconds + (seconds > 1 ? ' Seconds' : ' Second');
