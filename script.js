@@ -28,13 +28,13 @@ function updateTime() {
         seconds = Math.floor(seconds % (60));
 
 
-        if (days == 0) {
+        if (days <= 0) {
             dayNode.style.display = 'none';
-            if (hours == 0) {
+            if (hours <= 0) {
                 hourNode.style.display = 'none';
-                if (minutes == 0) {
+                if (minutes <= 0) {
                     minuteNode.style.display = 'none';
-                    if (seconds == 0) {
+                    if (seconds <= 0) {
                         secondNode.style.display = 'none';
                         audioNode.play();
 
